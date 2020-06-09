@@ -22,6 +22,10 @@
   - [ ] Swipe Right/Left Item List 
 - Geolocation
   - [ ] Tracing Route between two points
+- Analytics
+  - [ ] Google Analytics
+  - [ ] Firebase Analytics
+  - [ ] Adjust
 - Libraries
   - [ ] Biometric Reader
   - [ ] QRCode Reader
