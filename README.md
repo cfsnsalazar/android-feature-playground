@@ -31,6 +31,14 @@
   - [ ] QRCode Reader
   - [ ] QRCode Screen
   - [ ] Document Scanner
+- Quality
+  - [ ] tests
+  - [ ] detekt
+  - [ ] ktlint
+  - [ ] sonar
+  - [ ] Firebase distribution to homologation
+  - [ ] CI/CD using Github Actions
+  - [ ] Android Studio Code Styleguide
 
 ### The Project 
 
