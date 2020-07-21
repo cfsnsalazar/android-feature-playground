@@ -39,6 +39,7 @@
   - [ ] Firebase distribution to homologation
   - [ ] CI/CD using Github Actions
   - [ ] Android Studio Code Styleguide
+  - [ ] Accessibility Support
 
 ### The Project 
 
