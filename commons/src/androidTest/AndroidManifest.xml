@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.odete.commons">
+
+  <application>
+    <activity
+      android:windowSoftInputMode="adjustNothing"
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+      android:name="org.js.denisvieira.featureplayground.commons.systemservice.KeyboardActivityTest"/>
+  </application>
+
+</manifest>

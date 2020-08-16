@@ -1,0 +1,20 @@
+android {
+    applicationVariants.all { variant ->
+        def flavor = variant.productFlavors.first()
+        def key
+        if (variant.buildType.name == "release"
+                || variant.buildType.name == "homolog"
+                || variant.buildType.name == "releasetest"
+                || variant.buildType.name == "beta")
+            key = "RELEASE"
+        else
+            key = "DEBUG"
+
+        def MATCH_KEY = "${flavor.name.toUpperCase()}_KEY_${key}"
+
+        Properties properties = new Properties()
+        properties.load(rootProject.file('gradle.properties').newDataInputStream())
+
+        variant.buildConfigField "String", "WHITE_LABEL_PROGRAM_KEY", "\"${properties.getProperty(MATCH_KEY)}\""
+    }
+}

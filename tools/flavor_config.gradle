@@ -1,0 +1,17 @@
+android {
+    flavorDimensions "product"
+
+    productFlavors {
+        whitelabel {
+            dimension "product"
+            manifestPlaceholders = [flavorName: "whitelabel"]
+            buildConfigField "String", "FLAVOR_TYPE_SULFIX", '"whitelabel"'
+        }
+
+        customproduct {
+            dimension "product"
+            manifestPlaceholders = [flavorName: "customproduct"]
+            buildConfigField "String", "FLAVOR_TYPE_SULFIX", '"customproduct"'
+        }
+    }
+}

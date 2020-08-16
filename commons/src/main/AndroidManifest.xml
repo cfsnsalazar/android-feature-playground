@@ -1,0 +1,25 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  package="com.odete.commons">
+
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <application>
+    <activity
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+      android:name="com.odete.commonstest.test.FragmentTestActivity"/>
+
+    <provider
+      android:authorities="${applicationId}.fileprovider"
+      android:exported="false"
+      android:grantUriPermissions="true"
+      android:name="androidx.core.content.FileProvider"
+      tools:replace="android:authorities">
+
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_provider_paths"
+        tools:replace="android:resource" />
+    </provider>
+  </application>
+
+</manifest>

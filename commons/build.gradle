@@ -1,0 +1,45 @@
+import dependencies.Dependencies
+import dependencies.Modules
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: "$rootDir/tools/test_unit.gradle"
+apply from: "$rootDir/tools/test_instrumented.gradle"
+apply from: "$rootDir/tools/build_type_config.gradle"
+apply from: "$rootDir/tools/coverage/jacoco.gradle"
+
+android {
+
+    sourceSets {
+        test.resources.srcDirs += "src/test/res"
+    }
+}
+
+dependencies {
+
+    implementation Dependencies.Android.APP_COMPAT
+    implementation Dependencies.Android.DESIGN
+    implementation Dependencies.Android.CONSTRAINT_LAYOUT
+    implementation Dependencies.Android.CARD_VIEW
+    implementation Dependencies.Lifecycle.EXTENSIONS
+    implementation Dependencies.Navigation.FRAGMENT
+    implementation Dependencies.Lifecycle.LIVEDATA
+    implementation Dependencies.Coroutines.ANDROID
+//    implementation project(Modules.Library.STATES)
+
+    api project(Modules.Library.EVENTS)
+
+    api Dependencies.GSON
+
+    //timber
+    api Dependencies.TIMBER
+
+    implementation Dependencies.LOTTLE
+
+    implementation Dependencies.HAWK
+
+    implementation Dependencies.Room.RUNTIME
+    kapt Dependencies.Room.COMPILER
+}

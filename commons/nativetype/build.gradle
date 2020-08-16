@@ -1,0 +1,13 @@
+import dependencies.Dependencies
+
+apply plugin: "com.android.library"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: "$rootDir/tools/build_type_config.gradle"
+apply from: "$rootDir/tools/test_unit.gradle"
+apply from: "$rootDir/tools/coverage/jacoco.gradle"
+
+dependencies {
+    implementation Dependencies.Android.CORE_KTX
+}

@@ -1,0 +1,36 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = jacoco_version
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+static List<ConfigurableFileTree> findClassDirectories(Project project, List<String> filter) {
+
+    final classPaths = []
+    final buildDir = project.buildDir
+
+    if (projectWithFlavor(project)) {
+        classPaths.add(project.fileTree(dir: "${buildDir}/tmp/kotlin-classes/cartaobrancoDebug", excludes: filter))
+    } else {
+        classPaths.add(project.fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: filter))
+    }
+
+    return classPaths
+}
+
+static Boolean projectWithFlavor(Project project) {
+
+    if (!project.hasProperty('android')) return
+
+    return !(project.android.productFlavors.isEmpty())
+
+}
+
+ext {
+    findClassDirectories = this.&findClassDirectories
+}

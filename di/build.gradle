@@ -1,0 +1,14 @@
+import dependencies.Modules
+
+apply plugin: "com.android.library"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: "$rootDir/tools/flavor_config.gradle"
+apply from: "$rootDir/tools/build_type_config.gradle"
+
+dependencies {
+    implementation project(Modules.Commons.COMMONS_CORE)
+
+    implementation project(Modules.ROUTER)
+}

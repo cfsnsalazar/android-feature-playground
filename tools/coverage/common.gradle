@@ -1,0 +1,24 @@
+static List<String> coverageFilesFilter() {
+    return [
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            '**/*_Provide*Factory*.*',
+            '**/*BR*.*',
+            '**/databinding/**',
+            '**/di/**'
+    ]
+}
+
+static String taskFlavor(Project project) {
+
+    return !(project.android.productFlavors.isEmpty()) ? "Cartaobranco" : ""
+}
+
+ext {
+    coverageFilesFilter = this.&coverageFilesFilter
+    taskFlavor = this.&taskFlavor
+}

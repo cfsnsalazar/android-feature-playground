@@ -1,0 +1,60 @@
+import dependencies.Dependencies
+import dependencies.TestDependencies
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+
+        wiremock {
+            testCoverageEnabled true
+        }
+
+        debugrc {
+        }
+
+        wiremockrc {
+        }
+
+        release {
+        }
+
+        homolog {
+        }
+
+        releasetest {
+        }
+
+        beta {
+        }
+    }
+}
+
+
+ext {
+    moduleName = 'commons-test'
+    moduleBuildVariants = false
+}
+
+dependencies {
+    implementation Dependencies.Android.RECYCLER_VIEW
+    implementation (Dependencies.Navigation.UI) {
+        exclude group: "org.jetbrains.kotlinx"
+    }
+    implementation Dependencies.PAGING
+    implementation Dependencies.Kodein.CONF
+    api Dependencies.GSON
+
+    implementation TestDependencies.CORE_TEST_ARCH
+    implementation TestDependencies.CORE_TEST
+    implementation TestDependencies.ESPRESSO
+    implementation TestDependencies.TEST_RULES
+    implementation TestDependencies.MOCKITO_KOTLIN
+    implementation TestDependencies.FRAGMENT_TEST
+    implementation TestDependencies.COROUTINES
+}

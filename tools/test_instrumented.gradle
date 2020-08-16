@@ -1,0 +1,35 @@
+import dependencies.TestDependencies
+import dependencies.Modules
+
+project.ext {
+    orchestrator = project.hasProperty('orchestrator') ? project.property('orchestrator') : false
+}
+
+android {
+    testOptions {
+        animationsDisabled = true
+        if (orchestrator) {
+            println("With android test orchestrator")
+            execution "ANDROIDX_TEST_ORCHESTRATOR"
+        }
+    }
+}
+
+dependencies {
+    androidTestUtil TestDependencies.ORCHESTRATOR
+
+    androidTestImplementation TestDependencies.CORE_TEST
+    androidTestImplementation TestDependencies.MOCKITO_KOTLIN
+    androidTestImplementation TestDependencies.MOCKITO_ANDROID
+    androidTestImplementation TestDependencies.ESPRESSO
+    androidTestImplementation TestDependencies.ESPRESSO_INTENT
+    androidTestImplementation TestDependencies.ESPRESSO_CONTRIB
+    androidTestImplementation TestDependencies.TEST_RULES
+    androidTestImplementation TestDependencies.TEST_RUNNER
+    androidTestImplementation TestDependencies.JUNIT_EXT
+    androidTestImplementation TestDependencies.UI_AUTOMATOR
+    androidTestImplementation TestDependencies.FRAGMENT_TEST
+    androidTestImplementation TestDependencies.ROBOLECTRIC_ANNOTATION
+
+//    androidTestImplementation project(Modules.COMMONS_TEST)
+}

@@ -1,2 +1,10 @@
 rootProject.name='Android Feature Playground'
-include ':app'
+include ':app',
+        ":commons",
+        ":commons-test",
+        ":commons:nativetype",
+        ':features:authentication:sign-in',
+        ':features:authentication:sign-up',
+        ':libraries:router',
+        ':libraries:events',
+        ":di"

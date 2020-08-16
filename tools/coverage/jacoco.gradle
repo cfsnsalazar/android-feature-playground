@@ -1,0 +1,54 @@
+apply from: "$rootDir/tools/coverage/jacoco-tools.gradle"
+apply from: "$rootDir/tools/coverage/common.gradle"
+
+task generateUnitTestCoverage() {
+
+    group 'Reporting'
+    description 'Run Unit tests'
+
+    dependsOn "test${taskFlavor(project)}DebugUnitTest"
+
+    finalizedBy "jacocoTestReport"
+}
+
+task generateUnifiedtTestCoverage() {
+
+    group 'Reporting'
+    description 'Run Unit tests and instrumented tests'
+
+    dependsOn "test${taskFlavor(project)}DebugUnitTest"
+    dependsOn "create${taskFlavor(project)}DebugCoverageReport"
+
+    finalizedBy "jacocoTestReport"
+}
+
+task jacocoTestReport(type: JacocoReport) {
+
+    group 'Reporting'
+    description 'generate coverage report for tests'
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def coverageSourceDirs = [
+            "src/main/java",
+            "src/main/kotlin"
+    ]
+    classDirectories.from = files(findClassDirectories(project, coverageFilesFilter()))
+
+    additionalSourceDirs.from = files(coverageSourceDirs)
+    sourceDirectories.from = files(coverageSourceDirs)
+
+    executionData.from = fileTree(dir: "$buildDir", includes: [
+            "jacoco/*.exec",
+            "outputs/code_coverage/**/connected/*.ec",
+            "tmp/tests/*.exec",
+            "tmp/tests/*.ec",
+    ])
+
+    doLast {
+        println "Jacoco report has been generated to file://${reports.html.destination}/index.html"
+    }
+}

@@ -1,0 +1,35 @@
+import dependencies.TestDependencies
+import dependencies.Modules
+
+apply from: "$rootDir/tools/sonar.gradle"
+
+android {
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    sourceSets {
+        test {
+            resources.srcDirs += ["$rootDir/tools/test_resources"]
+        }
+    }
+}
+
+dependencies {
+    testImplementation TestDependencies.JUNIT
+    testImplementation TestDependencies.CORE_TEST
+    testImplementation TestDependencies.CORE_TEST_ARCH
+    testImplementation TestDependencies.ROBOLECTRIC
+    testImplementation TestDependencies.ROBOLECTRIC_ANNOTATION
+    testImplementation TestDependencies.MOCKITO_KOTLIN
+    testImplementation TestDependencies.JUNIT_EXT
+    testImplementation TestDependencies.ESPRESSO_INTENT
+    testImplementation TestDependencies.ESPRESSO_CONTRIB
+    testImplementation TestDependencies.MOCKITO_INLINE
+    testImplementation TestDependencies.FRAGMENT_TEST
+    testImplementation TestDependencies.COROUTINES
+
+//    testImplementation project(Modules.COMMONS_TEST)
+}
